@@ -5,8 +5,6 @@
 #   -> substitute first 14 measurements with a mean from [15:end]
 #   -> do all the measurements for the new set of data from the point above
 
-
-
 install.packages("readxl")
 install.packages("forecast")
 install.packages("ggplot2")
@@ -15,7 +13,6 @@ library(readxl)
 library(forecast)
 library(ggplot2)
 library(smooth)
-
 
 #Data starts from the 1st of Jan 2017 -> Sunday
 
@@ -59,7 +56,6 @@ av_2018
 
 av_2019 = mean(ts.data[730:734])
 av_2019
-
 
 #Averages for Days: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
 
@@ -144,10 +140,6 @@ rm(a)
 plot.ts(ts.data[366:731], type='l')
 lines(ts.data[1:365], type='l', col="red")
 
-
-
-
-
 # ---! Decomposition !---
 
 #   -> decomposition for daily data
@@ -162,12 +154,6 @@ plot(stl.test)
 stl.daily <- stl(ts.data, s.window="per")
 plot(stl.daily)
 
-
-
-
-
-
-
 # ----! FORECASTING !----
 
 # splitting data into training (first 70%) and validating(remaining 30%) sets
@@ -178,7 +164,7 @@ train.set <- ts(train.set,
                 start = c(2017,1),
                 frequency = 7)
 
-#Moving averages
+# Moving averages
 
 par(mfrow = c(1,1))
 
@@ -283,8 +269,6 @@ err <- err^2
 plot.ts(err)
 plot(err, type="l", main = "Holt-Winters' forecasting", ylab="squared error", xlab="forecasted day")
 sum(err)
-
-
 
 # LINEAR REGRESSSION
 y = t[1:513]
